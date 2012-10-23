@@ -13,6 +13,35 @@ Tracking bug: https://bugzilla.mozilla.org/show_bug.cgi?id=712717
 
 Wiki page: https://wiki.mozilla.org/Air_Mozilla
 
+Getting Started
+---------------
+To work on Air Mozilla locally:
+
+1. Clone the repository
+
+    `git clone --recursive git://github.com/mozilla/airmozilla.git/airmozilla.git`
+
+2. Install dependency libraries in a virtualenv
+
+    ```
+    pip install virtualenvwrapper
+    mkvirtualenv airmozilla
+    cd airmozilla
+    pip install -r requirements/*.txt
+    ```
+
+3. In your working directory, copy the dev settings file to local.py
+
+    ```
+    cp airmozilla/settings/dev.py airmozilla/settings/local.py
+    ```
+
+4. Create the MySQL database
+
+    `mysql -u root -e "CREATE DATABASE airmozilla"`
+
+5. See [First Run](#FirstRun)
+
 Tests and test coverage
 -----------------------
 Included is a set of comprehensive tests, which you can run by:
@@ -47,12 +76,13 @@ Requirements
 See the ``requirements/`` directory for installation dependencies.
 This app requires a working install of PIL with libjpeg and libpng.
 
-
+<a name="FirstRun"/>
 First run
 -----------------------
 ```
 ./manage.py syncdb
 ./manage.py migrate
+./manage.py runserver
 ```
 
 If you'd like to create a default set of example groups with useful permissions
